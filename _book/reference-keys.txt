@@ -1,7 +1,8 @@
-fig:nice-fig
-tab:nice-tab
 prerequisites
-intro
+shiny-deploy
+shiny-deploy-1
+prerequisite
+steps
 literature
 methods
 applications
