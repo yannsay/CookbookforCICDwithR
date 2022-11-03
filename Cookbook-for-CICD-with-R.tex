@@ -145,76 +145,137 @@ Remember each Rmd file contains one and only one chapter, and a chapter is defin
 
 To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
 
-\hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+\hypertarget{shiny-deploy}{%
+\chapter{Shiny deploy}\label{shiny-deploy}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+\hypertarget{shiny-deploy-1}{%
+\section{shiny-deploy}\label{shiny-deploy-1}}
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+Quick how to set a github action for a shiny deployment each time there is merge into the main branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml}{shiny-deploy.yaml}
+
+\hypertarget{prerequisite}{%
+\section{Prerequisite}\label{prerequisite}}
+
+Make sure you have the rsconnect information.
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://shiny.rstudio.com/articles/shinyapps.html}
+\end{itemize}
+
+\hypertarget{steps}{%
+\section{Steps}\label{steps}}
+
+\begin{itemize}
+\item
+  Create your app using \texttt{renv} (The yaml use assume \texttt{renv} is used).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{It is probably also a best practice to use renv.}
+  \end{itemize}
+\item
+  Try to deploy your app (either with the publish/redeploy button) or \texttt{rsconnect::deployApp()}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    While this step is not really necessary, it is to make sure your app runs once and any further problems do not come from the app itself.
+  \end{itemize}
+\item
+  Add a description \texttt{usethis::use\_description(check\_name\ =\ F)}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{\texttt{check\_name\ =\ F} to avoid checking name valid for CRAN.}
+  \end{itemize}
+\item
+  Add the shiny-deploy.yaml \texttt{usethis::use\_github\_action("shiny-deploy.yaml")}
+\item
+  Edit the shiny-deploy.yaml, especially the following part.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    You can either fill in for the APPNAME, ACCOUNT, SERVER.
+  \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Authorize and deploy app}
+\AttributeTok{    }\FunctionTok{env}\KeywordTok{:}\AttributeTok{ }
+\CommentTok{      \# Provide your app name, account name, and server to be deployed below}
+\AttributeTok{      }\FunctionTok{APPNAME}\KeywordTok{:}\AttributeTok{ your{-}app{-}name}
+\AttributeTok{      }\FunctionTok{ACCOUNT}\KeywordTok{:}\AttributeTok{ your{-}account{-}name}
+\AttributeTok{      }\FunctionTok{SERVER}\KeywordTok{:}\AttributeTok{ shinyapps.io}\CommentTok{ \# server to deploy}
+\FunctionTok{    run}\KeywordTok{: }\CharTok{|}
+\NormalTok{      rsconnect::setAccountInfo("$\{\{ secrets.RSCONNECT\_USER \}\}", "$\{\{ secrets.RSCONNECT\_TOKEN \}\}", "$\{\{ secrets.RSCONNECT\_SECRET \}\}")}
+\NormalTok{      rsconnect::deployApp(appName = "$\{\{ env.APPNAME \}\}", account = "$\{\{ env.ACCOUNT \}\}", server = "$\{\{ env.SERVER \}\}")}
+\AttributeTok{    }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{Cookbook-for-CICD-with-R_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+  \begin{itemize}
+  \tightlist
+  \item
+    Or you can remove the \texttt{env} block and change the \texttt{rsconnect::deployApp} call.
+  \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Authorize and deploy app}
+\FunctionTok{    run}\KeywordTok{: }\CharTok{|}
+\NormalTok{      rsconnect::setAccountInfo("$\{\{ secrets.RSCONNECT\_USER \}\}", "$\{\{ secrets.RSCONNECT\_TOKEN \}\}", "$\{\{ secrets.RSCONNECT\_SECRET \}\}")}
+\NormalTok{      rsconnect::deployApp()}
+\AttributeTok{    }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Specify the R version.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{I have a problem with the update of 4.2 from the 30.10.2022, so I have added a step to specify the same R version to be installed on the github action rather than the latest one. This should be a temporary measure while something better is figured out.}\\
+    From
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ r{-}lib/actions/setup{-}r@v2}
+\AttributeTok{    }\FunctionTok{with}\KeywordTok{:}
+\AttributeTok{      }\FunctionTok{use{-}public{-}rspm}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
+  To
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{Shaded}
+\begin{Highlighting}[]
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ r{-}lib/actions/setup{-}r@v2}
+\AttributeTok{    }\FunctionTok{with}\KeywordTok{:}
+\AttributeTok{      }\FunctionTok{r{-}version}\KeywordTok{:}\AttributeTok{ }\StringTok{\textquotesingle{}4.1.0\textquotesingle{}}
+\AttributeTok{      }\FunctionTok{use{-}public{-}rspm}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Add 3 secrets in the repository to store you account, token and secret (see prerequisite). They should have those names
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{RSCONNECT\_USER}, \texttt{RSCONNECT\_TOKEN}, and secret \texttt{RSCONNECT\_SECRET}
+  \item
+    You can follow these \href{https://docs.github.com/en/actions/security-guides/encrypted-secrets\#creating-encrypted-secrets-for-a-repository}{guides} if needed
+  \end{itemize}
+\item
+  Link the shiny app folder to the github repo (add the remote and origin)
+\item
+  Push!
+\end{itemize}
 
 \hypertarget{literature}{%
 \chapter{Literature}\label{literature}}
