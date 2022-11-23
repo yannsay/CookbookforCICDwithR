@@ -1,12 +1,11 @@
 Package: Cookbook for CICD with R
-Title: Test of bookdown and github actions
-Version: 0.0.0.9000
+Title: Cookbook for CICD with R and GitHub Actions
+Version: 1.0.0.0000
 Authors@R: 
     person("Yann", "Say", , "yann.say@impact-initiatives.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7390-4209"))
-Description: this is a test.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: Small examples of how to set up r-lib GitHub Actions to suport CICD with R programming.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.0

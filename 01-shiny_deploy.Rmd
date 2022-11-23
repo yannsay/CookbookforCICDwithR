@@ -1,7 +1,7 @@
 # Shiny deploy
 ## shiny-deploy
 
-Quick how to set a github action for a shiny deployment each time there is merge into the main branch using `r-lib` [shiny-deploy.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml)
+Quick how to set a github action for a shiny deployment each time there is merge into the **main** (or **master**) branch using `r-lib` [shiny-deploy.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml)
 
 ## Prerequisite
 
@@ -68,6 +68,6 @@ Make sure you have the rsconnect information.
     -   `RSCONNECT_USER`, `RSCONNECT_TOKEN`, and secret `RSCONNECT_SECRET`
     -   You can follow these [guides](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) if needed
 
--   Link the shiny app folder to the github repo (add the remote and origin)
+-   Link the shiny app folder to the github repo (add the remote and origin) (if you have not done it already).
 
 -   Push!

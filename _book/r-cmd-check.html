@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Minimal Book Example</title>
+  <title>Chapter 2 R CMD check | A Minimal Book Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Minimal Book Example" />
+  <meta property="og:title" content="Chapter 2 R CMD check | A Minimal Book Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Minimal Book Example" />
+  <meta name="twitter:title" content="Chapter 2 R CMD check | A Minimal Book Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="r-cmd-check.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="shiny-deploy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -178,29 +178,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">A Minimal Book Example</h1>
-<p class="author"><em>Yihui Xie</em></p>
-<p class="date"><em>2022-11-23</em></p>
+<div id="r-cmd-check" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> R CMD check<a href="r-cmd-check.html#r-cmd-check" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r-cmd-check-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> R-CMD-check<a href="r-cmd-check.html#r-cmd-check-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quick how-to to set a github action for a R CMD check each time there is merge into the main branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml">check-release.yaml</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml">check-standard.yaml</a></p>
 </div>
-<div id="prerequisites" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequisites<a href="index.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or the development version</span></span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.org/tinytex/" class="uri">https://yihui.org/tinytex/</a>.</p>
+<div id="prerequisite" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Prerequisite<a href="r-cmd-check.html#prerequisite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>None in particular but could be good to have some <a href="https://r-pkgs.org/testing-basics.html">tests</a> already.</p>
+</div>
+<div id="steps" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Steps<a href="r-cmd-check.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Create your package using.</p></li>
+<li><p>Try to test your package <code>devtools::test()</code> or <code>devtools::check()</code></p>
+<ul>
+<li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
+</ul></li>
+<li><p>Add the check-release.yaml <code>usethis::use_github_action("check-release")</code> or check-standard.yaml <code>usethis::use_github_action("check-standard")</code></p>
+<ul>
+<li>check-release.yaml will run R CMD check on Ubuntu and current R version</li>
+<li>check-standard.yaml will run R CMD check on 3 OS: mac and Windows with the current R version,
+Ubuntu with the current, development and previous version of R. This what you would want for CRAN.</li>
+</ul></li>
+<li><p>Add the badge with <code>usethis::use_github_actions_badge("check-release")</code> or <code>usethis::use_github_actions_badge("check-standard")</code></p></li>
+<li><p>Push!</p></li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="r-cmd-check.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shiny-deploy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
