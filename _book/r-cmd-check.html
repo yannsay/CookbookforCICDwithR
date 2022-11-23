@@ -182,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 2</span> R CMD check<a href="r-cmd-check.html#r-cmd-check" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="r-cmd-check-1" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> R-CMD-check<a href="r-cmd-check.html#r-cmd-check-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quick how-to to set a github action for a R CMD check each time there is merge into the main branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml">check-release.yaml</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml">check-standard.yaml</a></p>
+<p>Quick how-to to set a github action for a R CMD check each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml">check-release.yaml</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml">check-standard.yaml</a></p>
 </div>
 <div id="prerequisite" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Prerequisite<a href="r-cmd-check.html#prerequisite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="steps" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Steps<a href="r-cmd-check.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>Create your package using.</p></li>
+<li><p>Create your package.</p></li>
 <li><p>Try to test your package <code>devtools::test()</code> or <code>devtools::check()</code></p>
 <ul>
 <li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
@@ -199,8 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Add the check-release.yaml <code>usethis::use_github_action("check-release")</code> or check-standard.yaml <code>usethis::use_github_action("check-standard")</code></p>
 <ul>
 <li>check-release.yaml will run R CMD check on Ubuntu and current R version</li>
-<li>check-standard.yaml will run R CMD check on 3 OS: mac and Windows with the current R version,
-Ubuntu with the current, development and previous version of R. This what you would want for CRAN.</li>
+<li>check-standard.yaml will run R CMD check on 3 OS: mac and Windows with the current R version, Ubuntu with the current, development and previous version of R. This what you would want for CRAN.</li>
 </ul></li>
 <li><p>Add the badge with <code>usethis::use_github_actions_badge("check-release")</code> or <code>usethis::use_github_actions_badge("check-standard")</code></p></li>
 <li><p>Push!</p></li>

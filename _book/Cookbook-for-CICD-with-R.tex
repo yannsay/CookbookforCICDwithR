@@ -151,7 +151,7 @@ To compile this example to PDF, you need XeLaTeX. You are recommended to install
 \hypertarget{r-cmd-check-1}{%
 \section{R-CMD-check}\label{r-cmd-check-1}}
 
-Quick how-to to set a github action for a R CMD check each time there is merge into the main branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml}{check-release.yaml} or \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml}{check-standard.yaml}
+Quick how-to to set a github action for a R CMD check each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml}{check-release.yaml} or \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml}{check-standard.yaml}
 
 \hypertarget{prerequisite}{%
 \section{Prerequisite}\label{prerequisite}}
@@ -163,7 +163,7 @@ None in particular but could be good to have some \href{https://r-pkgs.org/testi
 
 \begin{itemize}
 \item
-  Create your package using.
+  Create your package.
 \item
   Try to test your package \texttt{devtools::test()} or \texttt{devtools::check()}
 
@@ -180,8 +180,7 @@ None in particular but could be good to have some \href{https://r-pkgs.org/testi
   \item
     check-release.yaml will run R CMD check on Ubuntu and current R version
   \item
-    check-standard.yaml will run R CMD check on 3 OS: mac and Windows with the current R version,
-    Ubuntu with the current, development and previous version of R. This what you would want for CRAN.
+    check-standard.yaml will run R CMD check on 3 OS: mac and Windows with the current R version, Ubuntu with the current, development and previous version of R. This what you would want for CRAN.
   \end{itemize}
 \item
   Add the badge with \texttt{usethis::use\_github\_actions\_badge("check-release")} or \texttt{usethis::use\_github\_actions\_badge("check-standard")}
@@ -195,7 +194,7 @@ None in particular but could be good to have some \href{https://r-pkgs.org/testi
 \hypertarget{shiny-deploy-1}{%
 \section{shiny-deploy}\label{shiny-deploy-1}}
 
-Quick how to set a github action for a shiny deployment each time there is merge into the main branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml}{shiny-deploy.yaml}
+Quick how to set a github action for a shiny deployment each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml}{shiny-deploy.yaml}
 
 \hypertarget{prerequisite-1}{%
 \section{Prerequisite}\label{prerequisite-1}}
