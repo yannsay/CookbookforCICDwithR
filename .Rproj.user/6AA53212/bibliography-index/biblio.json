@@ -56,11 +56,11 @@
             "issued": {
                 "date-parts": [
                     [
-                        2021
+                        2022
                     ]
                 ]
             },
-            "note": "R package version 0.22",
+            "note": "R package version 0.29",
             "title": "Bookdown: Authoring books and technical documents with r markdown",
             "title-short": "Bookdown",
             "type": "book"
@@ -81,7 +81,7 @@
                     ]
                 ]
             },
-            "note": "R package version 1.39",
+            "note": "R package version 1.40",
             "title": "Knitr: A general-purpose package for dynamic report generation in r",
             "title-short": "Knitr",
             "type": "book"
@@ -134,11 +134,11 @@
             "issued": {
                 "date-parts": [
                     [
-                        2021
+                        2022
                     ]
                 ]
             },
-            "note": "R package version 2.11",
+            "note": "R package version 2.17",
             "title": "Rmarkdown: Dynamic documents for r",
             "title-short": "Rmarkdown",
             "type": "book"

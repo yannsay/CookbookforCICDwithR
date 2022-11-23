@@ -4,7 +4,7 @@ Version: 1.0.0.0000
 Authors@R: 
     person("Yann", "Say", , "yann.say@impact-initiatives.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7390-4209"))
-Description: Small examples of how to set up r-lib GitHub Actions to suport CICD with R programming.
+Description: Small collections of step-by-step on how to set-up r-lib GitHub actions for CICD with R programming.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
