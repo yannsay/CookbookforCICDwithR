@@ -1,4 +1,5 @@
 # Shiny deploy
+
 ## shiny-deploy
 
 Quick how to set a github action for a shiny deployment each time there is merge into the **main** (or **master**) branch using `r-lib` [shiny-deploy.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml)
@@ -7,7 +8,7 @@ Quick how to set a github action for a shiny deployment each time there is merge
 
 Make sure you have the rsconnect information.
 
--   https://shiny.rstudio.com/articles/shinyapps.html
+-   <https://shiny.rstudio.com/articles/shinyapps.html>
 
 ## Steps
 
@@ -26,7 +27,9 @@ Make sure you have the rsconnect information.
 -   Add the shiny-deploy.yaml `usethis::use_github_action("shiny-deploy.yaml")`
 
 -   Edit the shiny-deploy.yaml, especially the following part.
+
     -   You can either fill in for the APPNAME, ACCOUNT, SERVER.
+
     ```{yaml}
       - name: Authorize and deploy app
         env: 
@@ -38,33 +41,20 @@ Make sure you have the rsconnect information.
           rsconnect::setAccountInfo("${{ secrets.RSCONNECT_USER }}", "${{ secrets.RSCONNECT_TOKEN }}", "${{ secrets.RSCONNECT_SECRET }}")
           rsconnect::deployApp(appName = "${{ env.APPNAME }}", account = "${{ env.ACCOUNT }}", server = "${{ env.SERVER }}")
         shell: Rscript {0}
-```
+    ```
+
     -   Or you can remove the `env` block and change the `rsconnect::deployApp` call.
+
     ```{yaml}
       - name: Authorize and deploy app
         run: |
           rsconnect::setAccountInfo("${{ secrets.RSCONNECT_USER }}", "${{ secrets.RSCONNECT_TOKEN }}", "${{ secrets.RSCONNECT_SECRET }}")
           rsconnect::deployApp()
         shell: Rscript {0}
-```
+    ```
 
--   Specify the R version.
-    -   *I have a problem with the update of 4.2 from the 30.10.2022, so I have added a step to specify the same R version to be installed on the github action rather than the latest one. This should be a temporary measure while something better is figured out.*  
-    From
-    ```{yaml}
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-```
-    To
-    ```{yaml}
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: '4.1.0'
-          use-public-rspm: true
-```
-    
 -   Add 3 secrets in the repository to store you account, token and secret (see prerequisite). They should have those names
+
     -   `RSCONNECT_USER`, `RSCONNECT_TOKEN`, and secret `RSCONNECT_SECRET`
     -   You can follow these [guides](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) if needed
 

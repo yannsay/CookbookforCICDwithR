@@ -1,4 +1,4 @@
-prerequisites
+intro
 r-cmd-check
 r-cmd-check-1
 prerequisite
@@ -7,9 +7,3 @@ shiny-deploy
 shiny-deploy-1
 prerequisite-1
 steps-1
-literature
-methods
-applications
-example-one
-example-two
-final-words
