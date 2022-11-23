@@ -1,0 +1,26 @@
+# R CMD check
+
+## R-CMD-check
+
+Quick how-to to set a github action for a R CMD check each time there is merge into the **main** (or **master**) branch using `r-lib` [check-release.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml) or [check-standard.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml)
+
+## Prerequisite
+
+None in particular but could be good to have some [tests](https://r-pkgs.org/testing-basics.html) already.
+
+## Steps
+
+-   Create your package.
+
+-   Try to test your package `devtools::test()` or `devtools::check()`
+
+    -   While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
+
+-   Add the check-release.yaml `usethis::use_github_action("check-release")` or check-standard.yaml `usethis::use_github_action("check-standard")`
+
+    -   check-release.yaml will run R CMD check on Ubuntu and current R version
+    -   check-standard.yaml will run R CMD check on 3 OS: mac and Windows with the current R version, Ubuntu with the current, development and previous version of R. This what you would want for CRAN.
+
+-   Add the badge with `usethis::use_github_actions_badge("check-release")` or `usethis::use_github_actions_badge("check-standard")`
+
+-   Push!
