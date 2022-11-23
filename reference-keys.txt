@@ -1,8 +1,12 @@
 prerequisites
-shiny-deploy
-shiny-deploy-1
+r-cmd-check
+r-cmd-check-1
 prerequisite
 steps
+shiny-deploy
+shiny-deploy-1
+prerequisite-1
+steps-1
 literature
 methods
 applications
