@@ -3,7 +3,11 @@ r-cmd-check
 r-cmd-check-1
 prerequisite
 steps
-shiny-deploy
-shiny-deploy-1
+test-coverage
+test-coverage-1
 prerequisite-1
 steps-1
+shiny-deploy
+shiny-deploy-1
+prerequisite-2
+steps-2

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Shiny deploy | Cookbook for CICD with R and GitHub Actions</title>
+  <title>Chapter 3 Test coverage | Cookbook for CICD with R and GitHub Actions</title>
   <meta name="description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Shiny deploy | Cookbook for CICD with R and GitHub Actions" />
+  <meta property="og:title" content="Chapter 3 Test coverage | Cookbook for CICD with R and GitHub Actions" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Shiny deploy | Cookbook for CICD with R and GitHub Actions" />
+  <meta name="twitter:title" content="Chapter 3 Test coverage | Cookbook for CICD with R and GitHub Actions" />
   
   <meta name="twitter:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-coverage.html"/>
-
+<link rel="prev" href="r-cmd-check.html"/>
+<link rel="next" href="shiny-deploy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -175,64 +175,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="shiny-deploy" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Shiny deploy<a href="shiny-deploy.html#shiny-deploy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="shiny-deploy-1" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> shiny-deploy<a href="shiny-deploy.html#shiny-deploy-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quick how to set a github action for a shiny deployment each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml">shiny-deploy.yaml</a></p>
+<div id="test-coverage" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Test coverage<a href="test-coverage.html#test-coverage" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="test-coverage-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> test-coverage<a href="test-coverage.html#test-coverage-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quick how-to to set a GitHub action to get code coverage and the badge from Codecov each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/test-coverage.yaml">test-coverage.yaml</a>.</p>
 </div>
-<div id="prerequisite-2" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Prerequisite<a href="shiny-deploy.html#prerequisite-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Make sure you have the rsconnect information.</p>
-<ul>
-<li><a href="https://shiny.rstudio.com/articles/shinyapps.html" class="uri">https://shiny.rstudio.com/articles/shinyapps.html</a></li>
-</ul>
+<div id="prerequisite-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Prerequisite<a href="test-coverage.html#prerequisite-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Have a <a href="https://app.codecov.io/">Codecov</a> account link with your repository.</p>
+<p>None in particular but could be good to have some <a href="https://r-pkgs.org/testing-basics.html">tests</a> as to get a coverage of something.</p>
 </div>
-<div id="steps-2" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Steps<a href="shiny-deploy.html#steps-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="steps-1" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Steps<a href="test-coverage.html#steps-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>Create your app using <code>renv</code> (The yaml use assume <code>renv</code> is used).</p>
+<li><p>Create your package.</p></li>
+<li><p>Link your local to the remote if it has not be done yet (make sure your project is linked to a Github repository).</p></li>
+<li><p>Make sure Codecov has synced with your repository. The repository should appear in the <em>Not yet setup</em> if this is the first time. The syncing between GitHub and Codecov takes a bit of time so you can go for a coffee or lunch.<img src="images/test-coverage/codecovnotyetsetup.png" alt="repo not yet setup" /></p></li>
+<li><p>Try to test your package <code>covr::package_coverage()</code>.</p>
 <ul>
-<li><em>It is probably also a best practice to use renv.</em></li>
+<li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
 </ul></li>
-<li><p>Try to deploy your app (either with the publish/redeploy button) or <code>rsconnect::deployApp()</code></p>
+<li><p>Add the test-coverage.yaml <code>usethis::use_github_action("test-coverage")</code></p></li>
+<li><p>Add the badge with <code>usethis::use_coverage("codecov")</code></p>
 <ul>
-<li>While this step is not really necessary, it is to make sure your app runs once and any further problems do not come from the app itself.</li>
+<li>This step should add a badge in your readme file. <img src="images/test-coverage/addbadge.png" alt="badge added" /></li>
+<li>Or should give you a message in the console telling you to copy and paste some lines in the README. <img src="images/test-coverage/copybadge.png" alt="badge added" /></li>
+<li>If nothing happen, you can add the line directly following the syntax or remove the <strong>codecov.yml</strong> from the project folder and run <code>usethis::use_coverage("codecov")</code> again.</li>
 </ul></li>
-<li><p>Add a description <code>usethis::use_description(check_name = F)</code>.</p>
-<ul>
-<li><em><code>check_name = F</code> to avoid checking name valid for CRAN.</em></li>
-</ul></li>
-<li><p>Add the shiny-deploy.yaml <code>usethis::use_github_action("shiny-deploy.yaml")</code></p></li>
-<li><p>Edit the shiny-deploy.yaml, especially the following part.</p>
-<ul>
-<li>You can either fill in for the APPNAME, ACCOUNT, SERVER.</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="shiny-deploy.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
-<span id="cb1-2"><a href="shiny-deploy.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb1-3"><a href="shiny-deploy.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">      # Provide your app name, account name, and server to be deployed below</span></span>
-<span id="cb1-4"><a href="shiny-deploy.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">APPNAME</span><span class="kw">:</span><span class="at"> your-app-name</span></span>
-<span id="cb1-5"><a href="shiny-deploy.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">ACCOUNT</span><span class="kw">:</span><span class="at"> your-account-name</span></span>
-<span id="cb1-6"><a href="shiny-deploy.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">SERVER</span><span class="kw">:</span><span class="at"> shinyapps.io</span><span class="co"> # server to deploy</span></span>
-<span id="cb1-7"><a href="shiny-deploy.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-8"><a href="shiny-deploy.html#cb1-8" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
-<span id="cb1-9"><a href="shiny-deploy.html#cb1-9" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp(appName = &quot;${{ env.APPNAME }}&quot;, account = &quot;${{ env.ACCOUNT }}&quot;, server = &quot;${{ env.SERVER }}&quot;)</span>
-<span id="cb1-10"><a href="shiny-deploy.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
-<ul>
-<li>Or you can remove the <code>env</code> block and change the <code>rsconnect::deployApp</code> call.</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="shiny-deploy.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
-<span id="cb2-2"><a href="shiny-deploy.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-3"><a href="shiny-deploy.html#cb2-3" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
-<span id="cb2-4"><a href="shiny-deploy.html#cb2-4" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp()</span>
-<span id="cb2-5"><a href="shiny-deploy.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div></li>
-<li><p>Add 3 secrets in the repository to store you account, token and secret (see prerequisite). They should have those names</p>
-<ul>
-<li><code>RSCONNECT_USER</code>, <code>RSCONNECT_TOKEN</code>, and secret <code>RSCONNECT_SECRET</code></li>
-<li>You can follow these <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository">guides</a> if needed</li>
-</ul></li>
-<li><p>Link the shiny app folder to the github repo (add the remote and origin) (if you have not done it already).</p></li>
 <li><p>Push!</p></li>
+<li><p>The GitHub action will push the report to Codecov, you can see the report by clicking on the badge.</p>
+<ul>
+<li><strong>Github and Codecov needs to sync for the percentage to appear</strong></li>
+</ul></li>
 </ul>
 
 </div>
@@ -242,8 +217,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-coverage.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="r-cmd-check.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shiny-deploy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
