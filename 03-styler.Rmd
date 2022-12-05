@@ -1,0 +1,29 @@
+# Style
+
+## styler
+
+Quick how-to to set a github action for a styler each time there is push or a pull request with files that includes *.[rR]*, *.[rR]md*, *.[rR]markdown*, *.[rR]nw*. into the **main** using `r-lib` [style.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml).
+
+## Prerequisite
+
+None in particular.
+
+## Steps
+
+-   Create your package.
+
+-   Try to test your package `styler::style_pkg()`
+
+    -   While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
+
+-   Add the check-release.yaml `usethis::use_github_action("style")`
+
+    -   You can change the styler::style_pkg to ```styler::style_file``` or ```styler::style_dir```.
+    ```{yaml}
+      - name: Style
+        run: styler::style_pkg(filetype = c(".R", ".Rmd", ".Rmarkdown", ".Rnw"))
+        shell: Rscript {0}
+    ```
+
+    -   More info and customisation on the [package page](https://styler.r-lib.org/articles/styler.html).  
+-   Push!

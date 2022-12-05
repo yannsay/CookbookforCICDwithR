@@ -2,7 +2,7 @@
 
 ## R-CMD-check
 
-Quick how-to to set a github action for a R CMD check each time there is merge into the **main** (or **master**) branch using `r-lib` [check-release.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml) or [check-standard.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml)
+Quick how-to to set a github action for a R CMD check each time there is merge into the **main** (or **master**) branch using `r-lib` [check-release.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml) or [check-standard.yaml](https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml).
 
 ## Prerequisite
 
