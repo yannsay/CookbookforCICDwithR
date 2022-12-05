@@ -117,7 +117,7 @@
 
 \title{Cookbook for CICD with R and GitHub Actions}
 \author{Yann Say}
-\date{2022-11-24}
+\date{2022-12-05}
 
 \begin{document}
 \maketitle
@@ -139,7 +139,7 @@ The book was built with \href{https://github.com/rstudio/bookdown}{\textbf{bookd
 \hypertarget{r-cmd-check-1}{%
 \section{R-CMD-check}\label{r-cmd-check-1}}
 
-Quick how-to to set a github action for a R CMD check each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml}{check-release.yaml} or \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml}{check-standard.yaml}
+Quick how-to to set a github action for a R CMD check each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml}{check-release.yaml} or \href{https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml}{check-standard.yaml}.
 
 \hypertarget{prerequisite}{%
 \section{Prerequisite}\label{prerequisite}}
@@ -176,6 +176,118 @@ None in particular but could be good to have some \href{https://r-pkgs.org/testi
   Push!
 \end{itemize}
 
+\hypertarget{test-coverage}{%
+\chapter{Test coverage}\label{test-coverage}}
+
+\hypertarget{test-coverage-1}{%
+\section{test-coverage}\label{test-coverage-1}}
+
+Quick how-to to set a GitHub action to get code coverage and the badge from Codecov each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/test-coverage.yaml}{test-coverage.yaml}.
+
+\hypertarget{prerequisite-1}{%
+\section{Prerequisite}\label{prerequisite-1}}
+
+Have a \href{https://app.codecov.io/}{Codecov} account link with your repository.
+
+None in particular but could be good to have some \href{https://r-pkgs.org/testing-basics.html}{tests} as to get a coverage of something.
+
+\hypertarget{steps-1}{%
+\section{Steps}\label{steps-1}}
+
+\begin{itemize}
+\item
+  Create your package.
+\item
+  Link your local to the remote if it has not be done yet (make sure your project is linked to a Github repository).
+\item
+  Make sure Codecov has synced with your repository. The repository should appear in the \emph{Not yet setup} if this is the first time. The syncing between GitHub and Codecov takes a bit of time so you can go for a coffee or lunch.\includegraphics{images/test-coverage/codecovnotyetsetup.png}
+\item
+  Try to test your package \texttt{covr::package\_coverage()}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
+  \end{itemize}
+\item
+  Add the test-coverage.yaml \texttt{usethis::use\_github\_action("test-coverage")}
+\item
+  Add the badge with \texttt{usethis::use\_coverage("codecov")}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This step should add a badge in your readme file. \includegraphics{images/test-coverage/addbadge.png}
+  \item
+    Or should give you a message in the console telling you to copy and paste some lines in the README. \includegraphics{images/test-coverage/copybadge.png}
+  \item
+    If nothing happen, you can add the line directly following the syntax or remove the \textbf{codecov.yml} from the project folder and run \texttt{usethis::use\_coverage("codecov")} again.
+  \end{itemize}
+\item
+  Push!
+\item
+  The GitHub action will push the report to Codecov, you can see the report by clicking on the badge.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Github and Codecov needs to sync for the percentage to appear}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{style}{%
+\chapter{Style}\label{style}}
+
+\hypertarget{styler}{%
+\section{styler}\label{styler}}
+
+Quick how-to to set a github action for a styler each time there is push or a pull request with files that includes \emph{.{[}rR{]}}, \emph{.{[}rR{]}md}, \emph{.{[}rR{]}markdown}, \emph{.{[}rR{]}nw}. into the \textbf{main} using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml}{style.yaml}.
+
+\hypertarget{prerequisite-2}{%
+\section{Prerequisite}\label{prerequisite-2}}
+
+None in particular.
+
+\hypertarget{steps-2}{%
+\section{Steps}\label{steps-2}}
+
+\begin{itemize}
+\item
+  Create your package.
+\item
+  Try to test your package \texttt{styler::style\_pkg()}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
+  \end{itemize}
+\item
+  Add the check-release.yaml \texttt{usethis::use\_github\_action("style")}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    You can change the styler::style\_pkg to \texttt{styler::style\_file} or \texttt{styler::style\_dir}.
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Style}
+\AttributeTok{    }\FunctionTok{run}\KeywordTok{:}\AttributeTok{ styler::style\_pkg(filetype = c(".R", ".Rmd", ".Rmarkdown", ".Rnw"))}
+\AttributeTok{    }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    More info and customisation on the \href{https://styler.r-lib.org/articles/styler.html}{package page}.\\
+  \end{itemize}
+\item
+  Push!
+\end{itemize}
+
 \hypertarget{shiny-deploy}{%
 \chapter{Shiny deploy}\label{shiny-deploy}}
 
@@ -184,8 +296,8 @@ None in particular but could be good to have some \href{https://r-pkgs.org/testi
 
 Quick how to set a github action for a shiny deployment each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml}{shiny-deploy.yaml}
 
-\hypertarget{prerequisite-1}{%
-\section{Prerequisite}\label{prerequisite-1}}
+\hypertarget{prerequisite-3}{%
+\section{Prerequisite}\label{prerequisite-3}}
 
 Make sure you have the rsconnect information.
 
@@ -195,8 +307,8 @@ Make sure you have the rsconnect information.
   \url{https://shiny.rstudio.com/articles/shinyapps.html}
 \end{itemize}
 
-\hypertarget{steps-1}{%
-\section{Steps}\label{steps-1}}
+\hypertarget{steps-3}{%
+\section{Steps}\label{steps-3}}
 
 \begin{itemize}
 \item
@@ -278,65 +390,6 @@ Make sure you have the rsconnect information.
   Link the shiny app folder to the github repo (add the remote and origin) (if you have not done it already).
 \item
   Push!
-\end{itemize}
-
-\hypertarget{test-coverage}{%
-\chapter{Test coverage}\label{test-coverage}}
-
-\hypertarget{test-coverage-1}{%
-\section{test-coverage}\label{test-coverage-1}}
-
-Quick how-to to set a GitHub action to get code coverage and the badge from Codecov each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/test-coverage.yaml}{test-coverage.yaml}.
-
-\hypertarget{prerequisite-2}{%
-\section{Prerequisite}\label{prerequisite-2}}
-
-Have a \href{https://app.codecov.io/}{Codecov} account link with your repository.
-
-None in particular but could be good to have some \href{https://r-pkgs.org/testing-basics.html}{tests} as to get a coverage of something.
-
-\hypertarget{steps-2}{%
-\section{Steps}\label{steps-2}}
-
-\begin{itemize}
-\item
-  Create your package.
-\item
-  Link your local to the remote if it has not be done yet (make sure your project is linked to a Github repository).
-\item
-  Make sure Codecov has synced with your repository. The repository should appear in the \emph{Not yet setup} if this is the first time. The syncing between GitHub and Codecov takes a bit of time so you can go for a coffee or lunch.\includegraphics{images/test-coverage/codecovnotyetsetup.png}
-\item
-  Try to test your package \texttt{covr::package\_coverage()}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
-  \end{itemize}
-\item
-  Add the test-coverage.yaml \texttt{usethis::use\_github\_action("test-coverage")}
-\item
-  Add the badge with \texttt{usethis::use\_coverage("codecov")}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    This step should add a badge in your readme file. \includegraphics{images/test-coverage/addbadge.png}
-  \item
-    Or should give you a message in the console telling you to copy and paste some lines in the README. \includegraphics{images/test-coverage/copybadge.png}
-  \item
-    If nothing happen, you can add the line directly following the syntax or remove the \textbf{codecov.yml} from the project folder and run \texttt{usethis::use\_coverage("codecov")} again.
-  \end{itemize}
-\item
-  Push!
-\item
-  The GitHub action will push the report to Codecov, you can see the report by clicking on the badge.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \textbf{Github and Codecov needs to sync for the percentage to appear}
-  \end{itemize}
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

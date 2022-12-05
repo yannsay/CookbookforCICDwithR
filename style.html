@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Cookbook for CICD with R and GitHub Actions</title>
+  <title>Chapter 4 Style | Cookbook for CICD with R and GitHub Actions</title>
   <meta name="description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Cookbook for CICD with R and GitHub Actions" />
+  <meta property="og:title" content="Chapter 4 Style | Cookbook for CICD with R and GitHub Actions" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Cookbook for CICD with R and GitHub Actions" />
+  <meta name="twitter:title" content="Chapter 4 Style | Cookbook for CICD with R and GitHub Actions" />
   
   <meta name="twitter:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="test-coverage.html"/>
+<link rel="next" href="shiny-deploy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -181,19 +181,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="style" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Style<a href="style.html#style" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="styler" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> styler<a href="style.html#styler" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quick how-to to set a github action for a styler each time there is push or a pull request with files that includes <em>.[rR]</em>, <em>.[rR]md</em>, <em>.[rR]markdown</em>, <em>.[rR]nw</em>. into the <strong>main</strong> using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml">style.yaml</a>.</p>
+</div>
+<div id="prerequisite-2" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Prerequisite<a href="style.html#prerequisite-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>None in particular.</p>
+</div>
+<div id="steps-2" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Steps<a href="style.html#steps-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Create your package.</p></li>
+<li><p>Try to test your package <code>styler::style_pkg()</code></p>
+<ul>
+<li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
+</ul></li>
+<li><p>Add the check-release.yaml <code>usethis::use_github_action("style")</code></p>
+<ul>
+<li>You can change the styler::style_pkg to <code>styler::style_file</code> or <code>styler::style_dir</code>.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="style.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Style</span></span>
+<span id="cb1-2"><a href="style.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> styler::style_pkg(filetype = c(&quot;.R&quot;, &quot;.Rmd&quot;, &quot;.Rmarkdown&quot;, &quot;.Rnw&quot;))</span></span>
+<span id="cb1-3"><a href="style.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
+<ul>
+<li>More info and customisation on the <a href="https://styler.r-lib.org/articles/styler.html">package page</a>.<br />
+</li>
+</ul></li>
+<li><p>Push!</p></li>
+</ul>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="test-coverage.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shiny-deploy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
