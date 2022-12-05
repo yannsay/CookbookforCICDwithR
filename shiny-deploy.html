@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Shiny deploy | Cookbook for CICD with R and GitHub Actions</title>
+  <title>Chapter 6 Shiny deploy | Cookbook for CICD with R and GitHub Actions</title>
   <meta name="description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Shiny deploy | Cookbook for CICD with R and GitHub Actions" />
+  <meta property="og:title" content="Chapter 6 Shiny deploy | Cookbook for CICD with R and GitHub Actions" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Shiny deploy | Cookbook for CICD with R and GitHub Actions" />
+  <meta name="twitter:title" content="Chapter 6 Shiny deploy | Cookbook for CICD with R and GitHub Actions" />
   
   <meta name="twitter:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="style.html"/>
+<link rel="prev" href="bookdown.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -155,11 +155,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="style.html"><a href="style.html#prerequisite-2"><i class="fa fa-check"></i><b>4.2</b> Prerequisite</a></li>
 <li class="chapter" data-level="4.3" data-path="style.html"><a href="style.html#steps-2"><i class="fa fa-check"></i><b>4.3</b> Steps</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="shiny-deploy.html"><a href="shiny-deploy.html"><i class="fa fa-check"></i><b>5</b> Shiny deploy</a>
+<li class="chapter" data-level="5" data-path="bookdown.html"><a href="bookdown.html"><i class="fa fa-check"></i><b>5</b> Bookdown</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="shiny-deploy.html"><a href="shiny-deploy.html#shiny-deploy-1"><i class="fa fa-check"></i><b>5.1</b> shiny-deploy</a></li>
-<li class="chapter" data-level="5.2" data-path="shiny-deploy.html"><a href="shiny-deploy.html#prerequisite-3"><i class="fa fa-check"></i><b>5.2</b> Prerequisite</a></li>
-<li class="chapter" data-level="5.3" data-path="shiny-deploy.html"><a href="shiny-deploy.html#steps-3"><i class="fa fa-check"></i><b>5.3</b> Steps</a></li>
+<li class="chapter" data-level="5.1" data-path="bookdown.html"><a href="bookdown.html#bookdown-1"><i class="fa fa-check"></i><b>5.1</b> Bookdown</a></li>
+<li class="chapter" data-level="5.2" data-path="bookdown.html"><a href="bookdown.html#prerequisite-3"><i class="fa fa-check"></i><b>5.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="5.3" data-path="bookdown.html"><a href="bookdown.html#steps-3"><i class="fa fa-check"></i><b>5.3</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="shiny-deploy.html"><a href="shiny-deploy.html"><i class="fa fa-check"></i><b>6</b> Shiny deploy</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="shiny-deploy.html"><a href="shiny-deploy.html#shiny-deploy-1"><i class="fa fa-check"></i><b>6.1</b> shiny-deploy</a></li>
+<li class="chapter" data-level="6.2" data-path="shiny-deploy.html"><a href="shiny-deploy.html#prerequisite-4"><i class="fa fa-check"></i><b>6.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="6.3" data-path="shiny-deploy.html"><a href="shiny-deploy.html#steps-4"><i class="fa fa-check"></i><b>6.3</b> Steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -181,21 +187,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="shiny-deploy" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Shiny deploy<a href="shiny-deploy.html#shiny-deploy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="shiny-deploy-1" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> shiny-deploy<a href="shiny-deploy.html#shiny-deploy-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="shiny-deploy" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Shiny deploy<a href="shiny-deploy.html#shiny-deploy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="shiny-deploy-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> shiny-deploy<a href="shiny-deploy.html#shiny-deploy-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Quick how to set a github action for a shiny deployment each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml">shiny-deploy.yaml</a></p>
 </div>
-<div id="prerequisite-3" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Prerequisite<a href="shiny-deploy.html#prerequisite-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prerequisite-4" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Prerequisite<a href="shiny-deploy.html#prerequisite-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Make sure you have the rsconnect information.</p>
 <ul>
 <li><a href="https://shiny.rstudio.com/articles/shinyapps.html" class="uri">https://shiny.rstudio.com/articles/shinyapps.html</a></li>
+<li>The action will require a <em>renv</em> environment.</li>
+<li>App to deploy (you can also use the faithful geyser example).</li>
 </ul>
 </div>
-<div id="steps-3" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Steps<a href="shiny-deploy.html#steps-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="steps-4" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Steps<a href="shiny-deploy.html#steps-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Create your app using <code>renv</code> (The yaml use assume <code>renv</code> is used).</p>
 <ul>
@@ -248,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="style.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bookdown.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

@@ -11,7 +11,11 @@ style
 styler
 prerequisite-2
 steps-2
-shiny-deploy
-shiny-deploy-1
+bookdown
+bookdown-1
 prerequisite-3
 steps-3
+shiny-deploy
+shiny-deploy-1
+prerequisite-4
+steps-4
