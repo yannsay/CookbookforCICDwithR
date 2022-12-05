@@ -9,6 +9,8 @@ Quick how to set a github action for a shiny deployment each time there is merge
 Make sure you have the rsconnect information.
 
 -   <https://shiny.rstudio.com/articles/shinyapps.html>
+-   The action will require a *renv* environment.
+-   App to deploy (you can also use the faithful geyser example).
 
 ## Steps
 

@@ -241,7 +241,7 @@ None in particular but could be good to have some \href{https://r-pkgs.org/testi
 \hypertarget{styler}{%
 \section{styler}\label{styler}}
 
-Quick how-to to set a github action for a styler each time there is push or a pull request with files that includes \emph{.{[}rR{]}}, \emph{.{[}rR{]}md}, \emph{.{[}rR{]}markdown}, \emph{.{[}rR{]}nw}. into the \textbf{main} using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml}{style.yaml}.
+Quick how-to to set a github action to style each time there is push or a pull request with files that includes \emph{.{[}rR{]}}, \emph{.{[}rR{]}md}, \emph{.{[}rR{]}markdown}, \emph{.{[}rR{]}nw}. into the \textbf{main} using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml}{style.yaml}.
 
 \hypertarget{prerequisite-2}{%
 \section{Prerequisite}\label{prerequisite-2}}
@@ -263,7 +263,66 @@ None in particular.
     While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
   \end{itemize}
 \item
-  Add the check-release.yaml \texttt{usethis::use\_github\_action("style")}
+  Add the style.yaml \texttt{usethis::use\_github\_action("style")}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    You can change the styler::style\_pkg to \texttt{styler::style\_file} or \texttt{styler::style\_dir}.
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Style}
+\AttributeTok{    }\FunctionTok{run}\KeywordTok{:}\AttributeTok{ styler::style\_pkg(filetype = c(".R", ".Rmd", ".Rmarkdown", ".Rnw"))}
+\AttributeTok{    }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    More info and customisation on the \href{https://styler.r-lib.org/articles/styler.html}{package page}.\\
+  \end{itemize}
+\item
+  Push!
+\end{itemize}
+
+\hypertarget{bookdown}{%
+\chapter{Bookdown}\label{bookdown}}
+
+\hypertarget{bookdown-1}{%
+\section{Bookdown}\label{bookdown-1}}
+
+Quick how to set a github action for a bookdown deployment onto the gh-pages branch each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/bookdown.yaml}{bookdown.yaml}
+
+\hypertarget{prerequisite-3}{%
+\section{Prerequisite}\label{prerequisite-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  The action will require a \emph{renv} environment.
+\item
+  Book to build (you can also use the faithful geyser example).
+\end{itemize}
+
+\hypertarget{steps-3}{%
+\section{Steps}\label{steps-3}}
+
+\begin{itemize}
+\item
+  Create your book using \texttt{renv} (The yaml use assume \texttt{renv} is used).
+\item
+  Try to build your book \texttt{styler::style\_pkg()}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
+  \end{itemize}
+\item
+  Add the check-release.yaml \texttt{usethis::use\_github\_action("bookdown")}
 
   \begin{itemize}
   \tightlist
@@ -296,8 +355,8 @@ None in particular.
 
 Quick how to set a github action for a shiny deployment each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/shiny-deploy.yaml}{shiny-deploy.yaml}
 
-\hypertarget{prerequisite-3}{%
-\section{Prerequisite}\label{prerequisite-3}}
+\hypertarget{prerequisite-4}{%
+\section{Prerequisite}\label{prerequisite-4}}
 
 Make sure you have the rsconnect information.
 
@@ -305,10 +364,14 @@ Make sure you have the rsconnect information.
 \tightlist
 \item
   \url{https://shiny.rstudio.com/articles/shinyapps.html}
+\item
+  The action will require a \emph{renv} environment.
+\item
+  App to deploy (you can also use the faithful geyser example).
 \end{itemize}
 
-\hypertarget{steps-3}{%
-\section{Steps}\label{steps-3}}
+\hypertarget{steps-4}{%
+\section{Steps}\label{steps-4}}
 
 \begin{itemize}
 \item

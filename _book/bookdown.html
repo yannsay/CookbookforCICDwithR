@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 R CMD check | Cookbook for CICD with R and GitHub Actions</title>
+  <title>Chapter 5 Bookdown | Cookbook for CICD with R and GitHub Actions</title>
   <meta name="description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 R CMD check | Cookbook for CICD with R and GitHub Actions" />
+  <meta property="og:title" content="Chapter 5 Bookdown | Cookbook for CICD with R and GitHub Actions" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 R CMD check | Cookbook for CICD with R and GitHub Actions" />
+  <meta name="twitter:title" content="Chapter 5 Bookdown | Cookbook for CICD with R and GitHub Actions" />
   
   <meta name="twitter:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="test-coverage.html"/>
+<link rel="prev" href="style.html"/>
+<link rel="next" href="shiny-deploy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -187,30 +187,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-cmd-check" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> R CMD check<a href="r-cmd-check.html#r-cmd-check" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="r-cmd-check-1" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> R-CMD-check<a href="r-cmd-check.html#r-cmd-check-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quick how-to to set a github action for a R CMD check each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml">check-release.yaml</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml">check-standard.yaml</a>.</p>
+<div id="bookdown" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Bookdown<a href="bookdown.html#bookdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bookdown-1" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Bookdown<a href="bookdown.html#bookdown-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quick how to set a github action for a bookdown deployment onto the gh-pages branch each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/bookdown.yaml">bookdown.yaml</a></p>
 </div>
-<div id="prerequisite" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Prerequisite<a href="r-cmd-check.html#prerequisite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>None in particular but could be good to have some <a href="https://r-pkgs.org/testing-basics.html">tests</a> already.</p>
-</div>
-<div id="steps" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Steps<a href="r-cmd-check.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prerequisite-3" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Prerequisite<a href="bookdown.html#prerequisite-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>Create your package.</p></li>
-<li><p>Try to test your package <code>devtools::test()</code> or <code>devtools::check()</code></p>
+<li>The action will require a <em>renv</em> environment.</li>
+<li>Book to build (you can also use the faithful geyser example).</li>
+</ul>
+</div>
+<div id="steps-3" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Steps<a href="bookdown.html#steps-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Create your book using <code>renv</code> (The yaml use assume <code>renv</code> is used).</p></li>
+<li><p>Try to build your book <code>styler::style_pkg()</code></p>
 <ul>
 <li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
 </ul></li>
-<li><p>Add the check-release.yaml <code>usethis::use_github_action("check-release")</code> or check-standard.yaml <code>usethis::use_github_action("check-standard")</code></p>
+<li><p>Add the check-release.yaml <code>usethis::use_github_action("bookdown")</code></p>
 <ul>
-<li>check-release.yaml will run R CMD check on Ubuntu and current R version</li>
-<li>check-standard.yaml will run R CMD check on 3 OS: mac and Windows with the current R version, Ubuntu with the current, development and previous version of R. This what you would want for CRAN.</li>
+<li>You can change the styler::style_pkg to <code>styler::style_file</code> or <code>styler::style_dir</code>.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="bookdown.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Style</span></span>
+<span id="cb2-2"><a href="bookdown.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> styler::style_pkg(filetype = c(&quot;.R&quot;, &quot;.Rmd&quot;, &quot;.Rmarkdown&quot;, &quot;.Rnw&quot;))</span></span>
+<span id="cb2-3"><a href="bookdown.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
+<ul>
+<li>More info and customisation on the <a href="https://styler.r-lib.org/articles/styler.html">package page</a>.<br />
+</li>
 </ul></li>
-<li><p>Add the badge with <code>usethis::use_github_actions_badge("check-release")</code> or <code>usethis::use_github_actions_badge("check-standard")</code></p></li>
 <li><p>Push!</p></li>
 </ul>
 
@@ -221,8 +229,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="test-coverage.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="style.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shiny-deploy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="test-coverage.html"/>
-<link rel="next" href="shiny-deploy.html"/>
+<link rel="next" href="bookdown.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -155,11 +155,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="style.html"><a href="style.html#prerequisite-2"><i class="fa fa-check"></i><b>4.2</b> Prerequisite</a></li>
 <li class="chapter" data-level="4.3" data-path="style.html"><a href="style.html#steps-2"><i class="fa fa-check"></i><b>4.3</b> Steps</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="shiny-deploy.html"><a href="shiny-deploy.html"><i class="fa fa-check"></i><b>5</b> Shiny deploy</a>
+<li class="chapter" data-level="5" data-path="bookdown.html"><a href="bookdown.html"><i class="fa fa-check"></i><b>5</b> Bookdown</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="shiny-deploy.html"><a href="shiny-deploy.html#shiny-deploy-1"><i class="fa fa-check"></i><b>5.1</b> shiny-deploy</a></li>
-<li class="chapter" data-level="5.2" data-path="shiny-deploy.html"><a href="shiny-deploy.html#prerequisite-3"><i class="fa fa-check"></i><b>5.2</b> Prerequisite</a></li>
-<li class="chapter" data-level="5.3" data-path="shiny-deploy.html"><a href="shiny-deploy.html#steps-3"><i class="fa fa-check"></i><b>5.3</b> Steps</a></li>
+<li class="chapter" data-level="5.1" data-path="bookdown.html"><a href="bookdown.html#bookdown-1"><i class="fa fa-check"></i><b>5.1</b> Bookdown</a></li>
+<li class="chapter" data-level="5.2" data-path="bookdown.html"><a href="bookdown.html#prerequisite-3"><i class="fa fa-check"></i><b>5.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="5.3" data-path="bookdown.html"><a href="bookdown.html#steps-3"><i class="fa fa-check"></i><b>5.3</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="shiny-deploy.html"><a href="shiny-deploy.html"><i class="fa fa-check"></i><b>6</b> Shiny deploy</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="shiny-deploy.html"><a href="shiny-deploy.html#shiny-deploy-1"><i class="fa fa-check"></i><b>6.1</b> shiny-deploy</a></li>
+<li class="chapter" data-level="6.2" data-path="shiny-deploy.html"><a href="shiny-deploy.html#prerequisite-4"><i class="fa fa-check"></i><b>6.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="6.3" data-path="shiny-deploy.html"><a href="shiny-deploy.html#steps-4"><i class="fa fa-check"></i><b>6.3</b> Steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -185,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Style<a href="style.html#style" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="styler" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> styler<a href="style.html#styler" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quick how-to to set a github action for a styler each time there is push or a pull request with files that includes <em>.[rR]</em>, <em>.[rR]md</em>, <em>.[rR]markdown</em>, <em>.[rR]nw</em>. into the <strong>main</strong> using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml">style.yaml</a>.</p>
+<p>Quick how-to to set a github action to style each time there is push or a pull request with files that includes <em>.[rR]</em>, <em>.[rR]md</em>, <em>.[rR]markdown</em>, <em>.[rR]nw</em>. into the <strong>main</strong> using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml">style.yaml</a>.</p>
 </div>
 <div id="prerequisite-2" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Prerequisite<a href="style.html#prerequisite-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -199,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
 </ul></li>
-<li><p>Add the check-release.yaml <code>usethis::use_github_action("style")</code></p>
+<li><p>Add the style.yaml <code>usethis::use_github_action("style")</code></p>
 <ul>
 <li>You can change the styler::style_pkg to <code>styler::style_file</code> or <code>styler::style_dir</code>.</li>
 </ul>
@@ -221,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="test-coverage.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shiny-deploy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bookdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
