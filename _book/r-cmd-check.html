@@ -23,7 +23,7 @@
 <meta name="author" content="Yann Say" />
 
 
-<meta name="date" content="2022-11-24" />
+<meta name="date" content="2022-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="shiny-deploy.html"/>
+<link rel="next" href="test-coverage.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Cookbook for CICD with R</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a></li>
@@ -143,17 +143,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="r-cmd-check.html"><a href="r-cmd-check.html#prerequisite"><i class="fa fa-check"></i><b>2.2</b> Prerequisite</a></li>
 <li class="chapter" data-level="2.3" data-path="r-cmd-check.html"><a href="r-cmd-check.html#steps"><i class="fa fa-check"></i><b>2.3</b> Steps</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="shiny-deploy.html"><a href="shiny-deploy.html"><i class="fa fa-check"></i><b>3</b> Shiny deploy</a>
+<li class="chapter" data-level="3" data-path="test-coverage.html"><a href="test-coverage.html"><i class="fa fa-check"></i><b>3</b> Test coverage</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="shiny-deploy.html"><a href="shiny-deploy.html#shiny-deploy-1"><i class="fa fa-check"></i><b>3.1</b> shiny-deploy</a></li>
-<li class="chapter" data-level="3.2" data-path="shiny-deploy.html"><a href="shiny-deploy.html#prerequisite-1"><i class="fa fa-check"></i><b>3.2</b> Prerequisite</a></li>
-<li class="chapter" data-level="3.3" data-path="shiny-deploy.html"><a href="shiny-deploy.html#steps-1"><i class="fa fa-check"></i><b>3.3</b> Steps</a></li>
+<li class="chapter" data-level="3.1" data-path="test-coverage.html"><a href="test-coverage.html#test-coverage-1"><i class="fa fa-check"></i><b>3.1</b> test-coverage</a></li>
+<li class="chapter" data-level="3.2" data-path="test-coverage.html"><a href="test-coverage.html#prerequisite-1"><i class="fa fa-check"></i><b>3.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="3.3" data-path="test-coverage.html"><a href="test-coverage.html#steps-1"><i class="fa fa-check"></i><b>3.3</b> Steps</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="test-coverage.html"><a href="test-coverage.html"><i class="fa fa-check"></i><b>4</b> Test coverage</a>
+<li class="chapter" data-level="4" data-path="style.html"><a href="style.html"><i class="fa fa-check"></i><b>4</b> Style</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="test-coverage.html"><a href="test-coverage.html#test-coverage-1"><i class="fa fa-check"></i><b>4.1</b> test-coverage</a></li>
-<li class="chapter" data-level="4.2" data-path="test-coverage.html"><a href="test-coverage.html#prerequisite-2"><i class="fa fa-check"></i><b>4.2</b> Prerequisite</a></li>
-<li class="chapter" data-level="4.3" data-path="test-coverage.html"><a href="test-coverage.html#steps-2"><i class="fa fa-check"></i><b>4.3</b> Steps</a></li>
+<li class="chapter" data-level="4.1" data-path="style.html"><a href="style.html#styler"><i class="fa fa-check"></i><b>4.1</b> styler</a></li>
+<li class="chapter" data-level="4.2" data-path="style.html"><a href="style.html#prerequisite-2"><i class="fa fa-check"></i><b>4.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="4.3" data-path="style.html"><a href="style.html#steps-2"><i class="fa fa-check"></i><b>4.3</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="shiny-deploy.html"><a href="shiny-deploy.html"><i class="fa fa-check"></i><b>5</b> Shiny deploy</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="shiny-deploy.html"><a href="shiny-deploy.html#shiny-deploy-1"><i class="fa fa-check"></i><b>5.1</b> shiny-deploy</a></li>
+<li class="chapter" data-level="5.2" data-path="shiny-deploy.html"><a href="shiny-deploy.html#prerequisite-3"><i class="fa fa-check"></i><b>5.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="5.3" data-path="shiny-deploy.html"><a href="shiny-deploy.html#steps-3"><i class="fa fa-check"></i><b>5.3</b> Steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -179,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 2</span> R CMD check<a href="r-cmd-check.html#r-cmd-check" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="r-cmd-check-1" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> R-CMD-check<a href="r-cmd-check.html#r-cmd-check-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quick how-to to set a github action for a R CMD check each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml">check-release.yaml</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml">check-standard.yaml</a></p>
+<p>Quick how-to to set a github action for a R CMD check each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-release.yaml">check-release.yaml</a> or <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/check-standard.yaml">check-standard.yaml</a>.</p>
 </div>
 <div id="prerequisite" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Prerequisite<a href="r-cmd-check.html#prerequisite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -210,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shiny-deploy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="test-coverage.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
