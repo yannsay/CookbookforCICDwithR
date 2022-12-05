@@ -222,24 +222,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>You can either fill in for the APPNAME, ACCOUNT, SERVER.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="shiny-deploy.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
-<span id="cb3-2"><a href="shiny-deploy.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb3-3"><a href="shiny-deploy.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">      # Provide your app name, account name, and server to be deployed below</span></span>
-<span id="cb3-4"><a href="shiny-deploy.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">APPNAME</span><span class="kw">:</span><span class="at"> your-app-name</span></span>
-<span id="cb3-5"><a href="shiny-deploy.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">ACCOUNT</span><span class="kw">:</span><span class="at"> your-account-name</span></span>
-<span id="cb3-6"><a href="shiny-deploy.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">SERVER</span><span class="kw">:</span><span class="at"> shinyapps.io</span><span class="co"> # server to deploy</span></span>
-<span id="cb3-7"><a href="shiny-deploy.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb3-8"><a href="shiny-deploy.html#cb3-8" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
-<span id="cb3-9"><a href="shiny-deploy.html#cb3-9" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp(appName = &quot;${{ env.APPNAME }}&quot;, account = &quot;${{ env.ACCOUNT }}&quot;, server = &quot;${{ env.SERVER }}&quot;)</span>
-<span id="cb3-10"><a href="shiny-deploy.html#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="shiny-deploy.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
+<span id="cb2-2"><a href="shiny-deploy.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb2-3"><a href="shiny-deploy.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">      # Provide your app name, account name, and server to be deployed below</span></span>
+<span id="cb2-4"><a href="shiny-deploy.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">APPNAME</span><span class="kw">:</span><span class="at"> your-app-name</span></span>
+<span id="cb2-5"><a href="shiny-deploy.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">ACCOUNT</span><span class="kw">:</span><span class="at"> your-account-name</span></span>
+<span id="cb2-6"><a href="shiny-deploy.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">SERVER</span><span class="kw">:</span><span class="at"> shinyapps.io</span><span class="co"> # server to deploy</span></span>
+<span id="cb2-7"><a href="shiny-deploy.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-8"><a href="shiny-deploy.html#cb2-8" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
+<span id="cb2-9"><a href="shiny-deploy.html#cb2-9" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp(appName = &quot;${{ env.APPNAME }}&quot;, account = &quot;${{ env.ACCOUNT }}&quot;, server = &quot;${{ env.SERVER }}&quot;)</span>
+<span id="cb2-10"><a href="shiny-deploy.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
 <ul>
 <li>Or you can remove the <code>env</code> block and change the <code>rsconnect::deployApp</code> call.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="shiny-deploy.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
-<span id="cb4-2"><a href="shiny-deploy.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb4-3"><a href="shiny-deploy.html#cb4-3" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
-<span id="cb4-4"><a href="shiny-deploy.html#cb4-4" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp()</span>
-<span id="cb4-5"><a href="shiny-deploy.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="shiny-deploy.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
+<span id="cb3-2"><a href="shiny-deploy.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb3-3"><a href="shiny-deploy.html#cb3-3" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
+<span id="cb3-4"><a href="shiny-deploy.html#cb3-4" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp()</span>
+<span id="cb3-5"><a href="shiny-deploy.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div></li>
 <li><p>Add 3 secrets in the repository to store you account, token and secret (see prerequisite). They should have those names</p>
 <ul>
 <li><code>RSCONNECT_USER</code>, <code>RSCONNECT_TOKEN</code>, and secret <code>RSCONNECT_SECRET</code></li>

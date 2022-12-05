@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 5</span> Bookdown<a href="bookdown.html#bookdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="bookdown-1" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Bookdown<a href="bookdown.html#bookdown-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quick how to set a github action for a bookdown deployment onto the gh-pages branch each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/bookdown.yaml">bookdown.yaml</a></p>
+<p>Quick how to set a github action for a bookdown deployment onto the <strong>gh-pages</strong> branch each time there is merge into the <strong>main</strong> (or <strong>master</strong>) branch using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/bookdown.yaml">bookdown.yaml</a></p>
 </div>
 <div id="prerequisite-3" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Prerequisite<a href="bookdown.html#prerequisite-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -204,22 +204,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.3</span> Steps<a href="bookdown.html#steps-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Create your book using <code>renv</code> (The yaml use assume <code>renv</code> is used).</p></li>
-<li><p>Try to build your book <code>styler::style_pkg()</code></p>
+<li><p>Try to build your book with the <em>Build Book</em> button on the <em>Build tab</em>. <img src="images/bookdown/buildbook.png" alt="Build Book" /></p>
 <ul>
 <li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
 </ul></li>
-<li><p>Add the check-release.yaml <code>usethis::use_github_action("bookdown")</code></p>
+<li><p>Add the bookdown.yaml <code>usethis::use_github_action("bookdown")</code></p></li>
+<li><p>Push!</p>
 <ul>
-<li>You can change the styler::style_pkg to <code>styler::style_file</code> or <code>styler::style_dir</code>.</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="bookdown.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Style</span></span>
-<span id="cb2-2"><a href="bookdown.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> styler::style_pkg(filetype = c(&quot;.R&quot;, &quot;.Rmd&quot;, &quot;.Rmarkdown&quot;, &quot;.Rnw&quot;))</span></span>
-<span id="cb2-3"><a href="bookdown.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
-<ul>
-<li>More info and customisation on the <a href="https://styler.r-lib.org/articles/styler.html">package page</a>.<br />
-</li>
+<li>There is no need to have the <strong>gh-pages</strong> set up beforehand. The action will set it up. If the the <strong>gh-pages</strong> branch is not set up, it will take some time to get it set up.</li>
+<li>There is no need to have the book build neither.</li>
 </ul></li>
-<li><p>Push!</p></li>
 </ul>
 
 </div>
