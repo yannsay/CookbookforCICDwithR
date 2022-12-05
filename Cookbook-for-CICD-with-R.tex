@@ -294,7 +294,7 @@ None in particular.
 \hypertarget{bookdown-1}{%
 \section{Bookdown}\label{bookdown-1}}
 
-Quick how to set a github action for a bookdown deployment onto the gh-pages branch each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/bookdown.yaml}{bookdown.yaml}
+Quick how to set a github action for a bookdown deployment onto the \textbf{gh-pages} branch each time there is merge into the \textbf{main} (or \textbf{master}) branch using \texttt{r-lib} \href{https://github.com/r-lib/actions/blob/v2-branch/examples/bookdown.yaml}{bookdown.yaml}
 
 \hypertarget{prerequisite-3}{%
 \section{Prerequisite}\label{prerequisite-3}}
@@ -314,7 +314,7 @@ Quick how to set a github action for a bookdown deployment onto the gh-pages bra
 \item
   Create your book using \texttt{renv} (The yaml use assume \texttt{renv} is used).
 \item
-  Try to build your book \texttt{styler::style\_pkg()}
+  Try to build your book with the \emph{Build Book} button on the \emph{Build tab}. \includegraphics{images/bookdown/buildbook.png}
 
   \begin{itemize}
   \tightlist
@@ -322,29 +322,17 @@ Quick how to set a github action for a bookdown deployment onto the gh-pages bra
     While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.
   \end{itemize}
 \item
-  Add the check-release.yaml \texttt{usethis::use\_github\_action("bookdown")}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    You can change the styler::style\_pkg to \texttt{styler::style\_file} or \texttt{styler::style\_dir}.
-  \end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Style}
-\AttributeTok{    }\FunctionTok{run}\KeywordTok{:}\AttributeTok{ styler::style\_pkg(filetype = c(".R", ".Rmd", ".Rmarkdown", ".Rnw"))}
-\AttributeTok{    }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    More info and customisation on the \href{https://styler.r-lib.org/articles/styler.html}{package page}.\\
-  \end{itemize}
+  Add the bookdown.yaml \texttt{usethis::use\_github\_action("bookdown")}
 \item
   Push!
+
+  \begin{itemize}
+  \tightlist
+  \item
+    There is no need to have the \textbf{gh-pages} set up beforehand. The action will set it up. If the the \textbf{gh-pages} branch is not set up, it will take some time to get it set up.
+  \item
+    There is no need to have the book build neither.
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{shiny-deploy}{%
