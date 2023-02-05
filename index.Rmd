@@ -14,5 +14,7 @@ description: "Small collections of step-by-step on how to set-up r-lib GitHub Ac
 
 This is a small collections of step-by-step on how to set-up of r-lib GitHub Actions for CICD with R programming. It mainly use the package `usethis`(version 2.1.6). More details of the actions can be found [here](https://github.com/r-lib/actions/tree/v2-branch/examples). When I thought necessary I have added a few additional steps, e.g. when using other services from GitHub or Codecov which I thought was missing when I was trying to learn about GitHub Actions. 
 
+Happy reading.
+
 The book was built with [**bookdown**](https://github.com/rstudio/bookdown).
 
