@@ -2,7 +2,11 @@
     "sortOrder": [
         {
             "columnIndex": 2,
-            "ascending": true
+            "ascending": false
+        },
+        {
+            "columnIndex": 4,
+            "ascending": false
         }
     ],
     "path": "C:/Users/Yann SAY/Desktop/git/Cookbook for CICD with R"
