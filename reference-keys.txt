@@ -11,6 +11,9 @@ style
 styler
 prerequisite-2
 steps-2
+possible-errors
+error-403
+protected-branch
 bookdown
 bookdown-1
 prerequisite-3
