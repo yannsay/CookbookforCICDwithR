@@ -12,7 +12,6 @@ styler
 prerequisite-2
 steps-2
 possible-errors
-error-403
 protected-branch
 bookdown
 bookdown-1
@@ -22,3 +21,6 @@ shiny-deploy
 shiny-deploy-1
 prerequisite-4
 steps-4
+known-issues
+error-403
+renv-and-sf
