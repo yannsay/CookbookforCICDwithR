@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Style | Cookbook for CICD with R and GitHub Actions</title>
+  <title>Chapter 7 Known issues | Cookbook for CICD with R and GitHub Actions</title>
   <meta name="description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Style | Cookbook for CICD with R and GitHub Actions" />
+  <meta property="og:title" content="Chapter 7 Known issues | Cookbook for CICD with R and GitHub Actions" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Style | Cookbook for CICD with R and GitHub Actions" />
+  <meta name="twitter:title" content="Chapter 7 Known issues | Cookbook for CICD with R and GitHub Actions" />
   
   <meta name="twitter:description" content="Small collections of step-by-step on how to set-up r-lib GitHub Actions for CICD with R programming." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-coverage.html"/>
-<link rel="next" href="bookdown.html"/>
+<link rel="prev" href="shiny-deploy.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -196,47 +196,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="style" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Style<a href="style.html#style" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="styler" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> styler<a href="style.html#styler" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quick how-to to set a github action to style each time there is push or a pull request with files that includes <em>.[rR]</em>, <em>.[rR]md</em>, <em>.[rR]markdown</em>, <em>.[rR]nw</em>. into the <strong>main</strong> using <code>r-lib</code> <a href="https://github.com/r-lib/actions/blob/v2-branch/examples/style.yaml">style.yaml</a>.</p>
+<div id="known-issues" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Known issues<a href="known-issues.html#known-issues" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter presents some of the issues encountered with renv and GitHub actions.</p>
+<div id="error-403" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Error 403<a href="known-issues.html#error-403" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is possible that once you set your action, it will not run and you will get an error 403. Error
+403 is usually link to a forbidden access error. It can look as below. It can happen if you changed ownership from a repository.</p>
+<pre><code>remote: Permission to /ACCOUNT-NAME/REPO-NAME.git denied to github-actions[bot].
+fatal: unable to access &#39;https://github.com/ACCOUNT-NAME/REPO-NAME/&#39;: The requested URL returned error: 403</code></pre>
+<p>To remediate to this, you need to change the workflow permission in your repository settings:
+- Settings -&gt; Action -&gt; General -&gt; Workflow permissions <a href="https://stackoverflow.com/questions/73687176/permission-denied-to-github-actionsbot-the-requested-url-returned-error-403">stackoverflow topic</a>
+<img src="images/styler/workflow%20permissions.png" alt="workflow_permissions" /></p>
 </div>
-<div id="prerequisite-2" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Prerequisite<a href="style.html#prerequisite-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>None in particular.</p>
-</div>
-<div id="steps-2" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Steps<a href="style.html#steps-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Create your package.</p></li>
-<li><p>Try to test your package <code>styler::style_pkg()</code></p>
-<ul>
-<li>While this step is not really necessary, it is to make sure your tests runs once and any further problems do not come from the tests.</li>
-</ul></li>
-<li><p>Add the style.yaml <code>usethis::use_github_action("style")</code></p>
-<ul>
-<li>You can change the styler::style_pkg to <code>styler::style_file</code> or <code>styler::style_dir</code>.</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="style.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Style</span></span>
-<span id="cb1-2"><a href="style.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">run</span><span class="kw">:</span><span class="at"> styler::style_pkg(filetype = c(&quot;.R&quot;, &quot;.Rmd&quot;, &quot;.Rmarkdown&quot;, &quot;.Rnw&quot;))</span></span>
-<span id="cb1-3"><a href="style.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
-<ul>
-<li>More info and customisation on the <a href="https://styler.r-lib.org/articles/styler.html">package page</a>.<br />
-</li>
-</ul></li>
-<li><p>Push!</p></li>
-</ul>
-</div>
-<div id="possible-errors" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Possible errors<a href="style.html#possible-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="protected-branch" class="section level3 hasAnchor" number="4.4.1">
-<h3><span class="header-section-number">4.4.1</span> Protected branch<a href="style.html#protected-branch" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>It is possible that the action fails if the branch is protected and needs review. It will solve once the review is approved.</p>
-<pre><code>remote: error: GH006: Protected branch update failed for refs/heads/master.        
-remote: error: At least 1 approving review is required by reviewers with write access. </code></pre>
+<div id="renv-and-sf" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> renv and sf<a href="known-issues.html#renv-and-sf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>While <code>sf</code> is installed correctly, it cannot be loaded into the machine. I have not found yet a solution.
+<img src="images/other/renv%20and%20sf/installation.png" alt="installation_successful" />
+<img src="images/other/renv%20and%20sf/error.png" alt="error_loading_sf" /></p>
 
-</div>
 </div>
 </div>
             </section>
@@ -244,8 +222,8 @@ remote: error: At least 1 approving review is required by reviewers with write a
           </div>
         </div>
       </div>
-<a href="test-coverage.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bookdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="shiny-deploy.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

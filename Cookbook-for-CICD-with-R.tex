@@ -117,7 +117,7 @@
 
 \title{Cookbook for CICD with R and GitHub Actions}
 \author{Yann Say}
-\date{2023-02-22}
+\date{2023-02-28}
 
 \begin{document}
 \maketitle
@@ -291,21 +291,6 @@ None in particular.
 \hypertarget{possible-errors}{%
 \section{Possible errors}\label{possible-errors}}
 
-\hypertarget{error-403}{%
-\subsection{Error 403}\label{error-403}}
-
-It is possible that once you set your action, it will not run and you will get an error 403. Error
-403 is usually link to a forbidden access error. It can look as below. It can happen if you changed ownership from a repository.
-
-\begin{verbatim}
-remote: Permission to /ACCOUNT-NAME/REPO-NAME.git denied to github-actions[bot].
-fatal: unable to access 'https://github.com/ACCOUNT-NAME/REPO-NAME/': The requested URL returned error: 403
-\end{verbatim}
-
-To remediate to this, you need to change the workflow permission in your repository settings:
-- Settings -\textgreater{} Action -\textgreater{} General -\textgreater{} Workflow permissions \href{https://stackoverflow.com/questions/73687176/permission-denied-to-github-actionsbot-the-requested-url-returned-error-403}{stackoverflow topic}
-\includegraphics{images/styler/workflow permissions.png}
-
 \hypertarget{protected-branch}{%
 \subsection{Protected branch}\label{protected-branch}}
 
@@ -470,6 +455,33 @@ Make sure you have the rsconnect information.
 \item
   Push!
 \end{itemize}
+
+\hypertarget{known-issues}{%
+\chapter{Known issues}\label{known-issues}}
+
+This chapter presents some of the issues encountered with renv and GitHub actions.
+
+\hypertarget{error-403}{%
+\section{Error 403}\label{error-403}}
+
+It is possible that once you set your action, it will not run and you will get an error 403. Error
+403 is usually link to a forbidden access error. It can look as below. It can happen if you changed ownership from a repository.
+
+\begin{verbatim}
+remote: Permission to /ACCOUNT-NAME/REPO-NAME.git denied to github-actions[bot].
+fatal: unable to access 'https://github.com/ACCOUNT-NAME/REPO-NAME/': The requested URL returned error: 403
+\end{verbatim}
+
+To remediate to this, you need to change the workflow permission in your repository settings:
+- Settings -\textgreater{} Action -\textgreater{} General -\textgreater{} Workflow permissions \href{https://stackoverflow.com/questions/73687176/permission-denied-to-github-actionsbot-the-requested-url-returned-error-403}{stackoverflow topic}
+\includegraphics{images/styler/workflow permissions.png}
+
+\hypertarget{renv-and-sf}{%
+\section{renv and sf}\label{renv-and-sf}}
+
+While \texttt{sf} is installed correctly, it cannot be loaded into the machine. I have not found yet a solution.
+\includegraphics{images/other/renv and sf/installation.png}
+\includegraphics{images/other/renv and sf/error.png}
 
   \bibliography{book.bib,packages.bib}
 
