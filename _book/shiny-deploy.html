@@ -23,7 +23,7 @@
 <meta name="author" content="Yann Say" />
 
 
-<meta name="date" content="2023-02-22" />
+<meta name="date" content="2023-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="bookdown.html"/>
-
+<link rel="next" href="known-issues.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -156,8 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="style.html"><a href="style.html#steps-2"><i class="fa fa-check"></i><b>4.3</b> Steps</a></li>
 <li class="chapter" data-level="4.4" data-path="style.html"><a href="style.html#possible-errors"><i class="fa fa-check"></i><b>4.4</b> Possible errors</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="style.html"><a href="style.html#error-403"><i class="fa fa-check"></i><b>4.4.1</b> Error 403</a></li>
-<li class="chapter" data-level="4.4.2" data-path="style.html"><a href="style.html#protected-branch"><i class="fa fa-check"></i><b>4.4.2</b> Protected branch</a></li>
+<li class="chapter" data-level="4.4.1" data-path="style.html"><a href="style.html#protected-branch"><i class="fa fa-check"></i><b>4.4.1</b> Protected branch</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="bookdown.html"><a href="bookdown.html"><i class="fa fa-check"></i><b>5</b> Bookdown</a>
@@ -171,6 +170,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="shiny-deploy.html"><a href="shiny-deploy.html#shiny-deploy-1"><i class="fa fa-check"></i><b>6.1</b> shiny-deploy</a></li>
 <li class="chapter" data-level="6.2" data-path="shiny-deploy.html"><a href="shiny-deploy.html#prerequisite-4"><i class="fa fa-check"></i><b>6.2</b> Prerequisite</a></li>
 <li class="chapter" data-level="6.3" data-path="shiny-deploy.html"><a href="shiny-deploy.html#steps-4"><i class="fa fa-check"></i><b>6.3</b> Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="known-issues.html"><a href="known-issues.html"><i class="fa fa-check"></i><b>7</b> Known issues</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="known-issues.html"><a href="known-issues.html#error-403"><i class="fa fa-check"></i><b>7.1</b> Error 403</a></li>
+<li class="chapter" data-level="7.2" data-path="known-issues.html"><a href="known-issues.html#renv-and-sf"><i class="fa fa-check"></i><b>7.2</b> renv and sf</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -227,24 +231,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>You can either fill in for the APPNAME, ACCOUNT, SERVER.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="shiny-deploy.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
-<span id="cb4-2"><a href="shiny-deploy.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb4-3"><a href="shiny-deploy.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">      # Provide your app name, account name, and server to be deployed below</span></span>
-<span id="cb4-4"><a href="shiny-deploy.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">APPNAME</span><span class="kw">:</span><span class="at"> your-app-name</span></span>
-<span id="cb4-5"><a href="shiny-deploy.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">ACCOUNT</span><span class="kw">:</span><span class="at"> your-account-name</span></span>
-<span id="cb4-6"><a href="shiny-deploy.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">SERVER</span><span class="kw">:</span><span class="at"> shinyapps.io</span><span class="co"> # server to deploy</span></span>
-<span id="cb4-7"><a href="shiny-deploy.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb4-8"><a href="shiny-deploy.html#cb4-8" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
-<span id="cb4-9"><a href="shiny-deploy.html#cb4-9" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp(appName = &quot;${{ env.APPNAME }}&quot;, account = &quot;${{ env.ACCOUNT }}&quot;, server = &quot;${{ env.SERVER }}&quot;)</span>
-<span id="cb4-10"><a href="shiny-deploy.html#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="shiny-deploy.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
+<span id="cb3-2"><a href="shiny-deploy.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb3-3"><a href="shiny-deploy.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">      # Provide your app name, account name, and server to be deployed below</span></span>
+<span id="cb3-4"><a href="shiny-deploy.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">APPNAME</span><span class="kw">:</span><span class="at"> your-app-name</span></span>
+<span id="cb3-5"><a href="shiny-deploy.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">ACCOUNT</span><span class="kw">:</span><span class="at"> your-account-name</span></span>
+<span id="cb3-6"><a href="shiny-deploy.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">SERVER</span><span class="kw">:</span><span class="at"> shinyapps.io</span><span class="co"> # server to deploy</span></span>
+<span id="cb3-7"><a href="shiny-deploy.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb3-8"><a href="shiny-deploy.html#cb3-8" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
+<span id="cb3-9"><a href="shiny-deploy.html#cb3-9" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp(appName = &quot;${{ env.APPNAME }}&quot;, account = &quot;${{ env.ACCOUNT }}&quot;, server = &quot;${{ env.SERVER }}&quot;)</span>
+<span id="cb3-10"><a href="shiny-deploy.html#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div>
 <ul>
 <li>Or you can remove the <code>env</code> block and change the <code>rsconnect::deployApp</code> call.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="shiny-deploy.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
-<span id="cb5-2"><a href="shiny-deploy.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb5-3"><a href="shiny-deploy.html#cb5-3" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
-<span id="cb5-4"><a href="shiny-deploy.html#cb5-4" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp()</span>
-<span id="cb5-5"><a href="shiny-deploy.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="shiny-deploy.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authorize and deploy app</span></span>
+<span id="cb4-2"><a href="shiny-deploy.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-3"><a href="shiny-deploy.html#cb4-3" aria-hidden="true" tabindex="-1"></a>      rsconnect::setAccountInfo(&quot;${{ secrets.RSCONNECT_USER }}&quot;, &quot;${{ secrets.RSCONNECT_TOKEN }}&quot;, &quot;${{ secrets.RSCONNECT_SECRET }}&quot;)</span>
+<span id="cb4-4"><a href="shiny-deploy.html#cb4-4" aria-hidden="true" tabindex="-1"></a>      rsconnect::deployApp()</span>
+<span id="cb4-5"><a href="shiny-deploy.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span></code></pre></div></li>
 <li><p>Add 3 secrets in the repository to store you account, token and secret (see prerequisite). They should have those names</p>
 <ul>
 <li><code>RSCONNECT_USER</code>, <code>RSCONNECT_TOKEN</code>, and secret <code>RSCONNECT_SECRET</code></li>
@@ -261,8 +265,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="bookdown.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="bookdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="known-issues.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
